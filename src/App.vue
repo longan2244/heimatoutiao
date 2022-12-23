@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <nav>
-       <h1>黑马</h1>
-    </nav>
-    <router-view/>
+    <!-- 路由出口 -->
+    <router-view></router-view>
   </div>
 </template>
 
