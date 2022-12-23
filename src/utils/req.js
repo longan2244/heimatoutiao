@@ -1,10 +1,13 @@
 import axios from "axios";
-
+import store from "@/store";
 const ajax = axios.create({
   baseURL: "http://toutiao.itheima.net"
 })
 ajax.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
+  if (localStorage.getItem('usertokeninfo')) {
+    config.headers.Authorization = `Bearer ${store.state.usertokeninfo.token}`
+  }
   return config;
 }, function (error) {
   // 对请求错误做些什么

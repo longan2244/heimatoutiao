@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       userinfo: {
-        mobile: "13911111111", //账号
+        mobile: "15756242392", //账号
         code: "246810", //验证码
       },
       Iscountdownshow: false, //是否显示倒计时
@@ -141,6 +141,7 @@ export default {
         let { data: res } = await loginapi(this.userinfo);
         this.SETUSERTOKENINFOIO(res.data);
         Toast.success("成功登陆");
+        this.$router.push("/my")
       } catch (error) {
         return Toast.fail(error);
       }

@@ -266,3 +266,14 @@ body {
 .app-nav-bar .van-icon {
   color: white;
 }
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}

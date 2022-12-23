@@ -4,6 +4,9 @@
  * @param {*} value 本地储存值
  */
 export const setItem = (name, value) => {
+  if (value == null) {
+    return removeItem(name)
+  }
   if (typeof value === 'object') {
     value = JSON.stringify(value);
   }

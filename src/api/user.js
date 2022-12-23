@@ -20,4 +20,12 @@ export const sendSmsapi = mobile => {
   })
 }
 
+//获取用户资料
+export const getuserinfoapi = () => {
+  return ajax({
+    method: 'get',
+    url: "/v1_0/user",
+  })
+}
+
 
