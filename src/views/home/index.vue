@@ -9,9 +9,16 @@
         </van-nav-bar>
       </div>
     </div>
+
     <div class="bodys">
       <div class="tab">
         <van-tabs v-model="active" color="#3296fa">
+          <!-- 汉堡 -->
+          <template #nav-right>
+            <div @click="TabEditshow = true" class="hbcd">
+              <van-icon name="wap-nav" />
+            </div>
+          </template>
           <van-tab
             v-for="item in channelsList"
             :key="item.id"
@@ -22,15 +29,28 @@
         </van-tabs>
       </div>
     </div>
+
+    <!-- 弹窗 -->
+    <van-popup
+      v-model="TabEditshow"
+      closeable
+      position="bottom"
+      get-container="body"
+      :style="{ height: '100%' }"
+    >
+      <Tabedits :channelsList="channelsList" @goid="goids"></Tabedits>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import { channelsapi } from "@/api/essay.js";
 import EssayList from "@/components/essayList/index.vue";
+import Tabedits from "@/components/tabEdits/index.vue";
 export default {
   components: {
     EssayList,
+    Tabedits,
   },
   name: "Home",
   props: [],
@@ -38,12 +58,18 @@ export default {
     return {
       active: 0,
       channelsList: [],
+      TabEditshow: true,
     };
   },
   methods: {
     async getchannels() {
       let { data: res } = await channelsapi();
       this.channelsList = res.data.channels;
+    },
+    goids(id) {
+      console.log(id);
+      this.TabEditshow = false;
+      this.active = id;
     },
   },
   computed: {},
@@ -72,6 +98,21 @@ export default {
       border-radius: 16px;
       color: #ccc;
     }
+  }
+  .tab {
+    padding-right: 40px;
+  }
+  .hbcd {
+    background-color: white;
+    width: 40px;
+    height: 43px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    line-height: 43px;
+    opacity: 0.8;
+    font-size: 20px;
+    color: #333333;
   }
 }
 </style>
