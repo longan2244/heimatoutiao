@@ -24,3 +24,29 @@ export const articlesapi = (channel_id, timestamp) => {
     url: `/v1_0/articles?channel_id=${channel_id}&timestamp=${timestamp}`,
   })
 }
+//搜索联想
+export const sugapi = (q) => {
+  return ajax({
+    method: 'get',
+    url: `/v1_0/suggestion?q=${q}`,
+  })
+}
+
+//搜索结果
+export const resapi = (params) => {
+  return ajax({
+    method: 'get',
+    url: `/v1_0/search`,
+    params,
+  })
+}
+//搜索记录 
+export const seachhistoryapi = (params) => {
+  // return ajax({
+  //   method: 'get',
+  //   url: `/v1_0/search/histories`,
+  //   params,
+  // })
+  return ["vue", "js", "javascript"]  //虚拟数据
+}
+

@@ -4,12 +4,12 @@
       <div class="seach">
         <van-nav-bar>
           <template #title>
-            <van-button>搜索</van-button>
+            <van-button @click="$router.push('/seach')">搜索</van-button>
           </template>
         </van-nav-bar>
       </div>
     </div>
-
+  
     <div class="bodys">
       <div class="tab">
         <van-tabs v-model="active" color="#3296fa">
@@ -58,7 +58,7 @@ export default {
     return {
       active: 0,
       channelsList: [],
-      TabEditshow: true,
+      TabEditshow: false,
     };
   },
   methods: {
