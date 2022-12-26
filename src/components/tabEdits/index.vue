@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { ImagePreview } from 'vant';
 import { allchannelsapi } from "@/api/essay";
 export default {
   components: {},

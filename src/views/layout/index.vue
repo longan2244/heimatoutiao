@@ -18,7 +18,7 @@ export default {
   props: [],
   data() {
     return {
-        active: 0,
+      active: 0,
     };
   },
   methods: {},

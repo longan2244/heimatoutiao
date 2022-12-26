@@ -3,12 +3,12 @@ import VueRouter from 'vue-router'
 import Login from "@/views/login"
 import Layout from "@/views/layout"
 import Home from "@/views/home"
-
 import Qa from "@/views/qa"
 import Video from "@/views/video"
 import My from "@/views/my"
 import Search from "@/views/search"
 import Articleinfo from "@/views/articleinfo"
+import EditTheProfile from "@/views/editTheProfile/index"
 
 Vue.use(VueRouter)
 
@@ -25,7 +25,9 @@ const routes = [
     ]
   },
   { path: "/seach", name: "seach", component: Search },
-  { path: "/article/:article_id", name: "article", component: Articleinfo, props: true }
+  { path: "/article/:article_id", name: "article", component: Articleinfo, props: true },
+  { path: "/my/editTheProfile", name: "editTheProfile", component: EditTheProfile }
+
 ]
 
 const router = new VueRouter({

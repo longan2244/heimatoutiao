@@ -50,3 +50,76 @@ export const seachhistoryapi = (params) => {
   return ["vue", "js", "javascript"]  //虚拟数据
 }
 
+// 获取文章详情
+export const articleapi = (article_id) => {
+  return ajax({
+    method: 'get',
+    url: `/v1_0/articles/${article_id}`,
+  })
+}
+//获取一级评论
+//获取二级评论
+export const commentsapi = (params) => {
+  return ajax({
+    method: 'get',
+    url: `/v1_0/comments`,
+    params
+  })
+}
+//文章点赞
+export const forbidClickapi = target => {
+  return ajax({
+    method: 'post',
+    url: `/v1_0/article/likings`,
+    data: {
+      target
+    }
+  })
+}
+//取消文章点赞
+export const delforbidClickapi = target => {
+  return ajax({
+    method: 'DELETE',
+    url: `/v1_0/article/likings/${target}`,
+  })
+}
+//收藏文章
+export const collectionsapi = target => {
+  return ajax({
+    method: 'post',
+    url: `/v1_0/article/collections`,
+    data: {
+      target
+    }
+  })
+}
+//取消收藏文章
+export const delcollectionsapi = target => {
+  return ajax({
+    method: 'DELETE',
+    url: `/v1_0/article/collections/${target}`,
+  })
+}
+
+//对评论点赞
+
+export const commentlikeapi = target => {
+  return ajax({
+    method: 'post',
+    url: `/v1_0/comment/likings`,
+    data: {
+      target
+    }
+  })
+}
+
+//发布评论
+
+export const postcommentsapi = data => {
+  return ajax({
+    method: 'post',
+    url: `/v1_0/comments`,
+    data,
+  })
+}
+

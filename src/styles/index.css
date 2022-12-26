@@ -266,6 +266,10 @@ body {
 .app-nav-bar .van-icon {
   color: white;
 }
+.van-button {
+  background-color: #3296fa;
+  border: 0;
+}
 .fl {
   float: left;
 }

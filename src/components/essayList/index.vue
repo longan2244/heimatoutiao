@@ -7,7 +7,7 @@
         finished-text="没有更多了"
         @load="onLoad"
       >
-        <van-cell v-for="(item, index) in EssayList" :key="index">
+        <van-cell v-for="(item, index) in EssayList" :key="index"   @click="$router.push(`/article/${item.art_id}`)">
           <div>
               <Essayitem :itemdata=item></Essayitem>
           </div>
