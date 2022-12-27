@@ -9,6 +9,7 @@ import My from "@/views/my"
 import Search from "@/views/search"
 import Articleinfo from "@/views/articleinfo"
 import EditTheProfile from "@/views/editTheProfile/index"
+import Robot from "@/views/my/Robot/index.vue"
 
 Vue.use(VueRouter)
 
@@ -26,7 +27,8 @@ const routes = [
   },
   { path: "/seach", name: "seach", component: Search },
   { path: "/article/:article_id", name: "article", component: Articleinfo, props: true },
-  { path: "/my/editTheProfile", name: "editTheProfile", component: EditTheProfile }
+  { path: "/my/editTheProfile", name: "editTheProfile", component: EditTheProfile },
+  { path: "/my/robot", name: "robot", component: Robot }
 
 ]
 

@@ -18,7 +18,9 @@
             <img :src="currentuserinfo.photo" alt="" />
           </div>
           <span class="username">{{ currentuserinfo.name }}</span>
-          <span @click="$router.push('/my/editTheProfile')" class="editinfo">编辑资料</span>
+          <span @click="$router.push('/my/editTheProfile')" class="editinfo"
+            >编辑资料</span
+          >
         </div>
         <!-- 数值资料 -->
         <div class="datainfo">
@@ -60,7 +62,7 @@
         <span class="affairs">消息通知</span>
         <span class="iconfont icon-list-right"></span>
       </div>
-      <div class="column">
+      <div class="column" @click="$router.push('/my/robot')">
         <span class="affairs">小智同学</span>
         <span class="iconfont icon-list-right"></span>
       </div>
