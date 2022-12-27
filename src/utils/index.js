@@ -9,7 +9,7 @@ export const setItem = (name, value) => {
   }
   if (typeof value === 'object') {
     value = JSON.stringify(value);
-  }
+  } 
   localStorage.setItem(name, value);
 }
 export const getItem = (name) => {

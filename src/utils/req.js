@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from "@/store";
 import { Toast } from "vant"
-
+import router from "@/router/index.js";
 const ajax = axios.create({
   baseURL: "http://toutiao.itheima.net"
 })
@@ -29,8 +29,12 @@ ajax.interceptors.response.use(function (response) {
   Toast.clear()
   return response;
 }, function (error) {
+  if (error.response.data.message == "用户未认证") {
+    if (!store.state.usertokeninfo.token) {
+      router.push("/login")
+    }
+  }
   // 超出 2xx 范围的状态码都会触发该函数。
-  Toast("系统错误",error)
   // 对响应错误做点什么
   return Promise.reject(error);
 });

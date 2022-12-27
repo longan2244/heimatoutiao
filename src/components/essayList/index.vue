@@ -1,5 +1,5 @@
 <template>
-  <div class="EssayList-container">
+  <div class="EssayList-container" ref="EssayList-container">
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
         v-model="loading"
@@ -7,9 +7,13 @@
         finished-text="没有更多了"
         @load="onLoad"
       >
-        <van-cell v-for="(item, index) in EssayList" :key="index"   @click="$router.push(`/article/${item.art_id}`)">
+        <van-cell
+          v-for="(item, index) in EssayList"
+          :key="index"
+          @click="$router.push(`/article/${item.art_id}`)"
+        >
           <div>
-              <Essayitem :itemdata=item></Essayitem>
+            <Essayitem :itemdata="item"></Essayitem>
           </div>
         </van-cell>
       </van-list>
@@ -18,7 +22,8 @@
 </template>
 <script>
 import { articlesapi } from "@/api/essay.js";
-import Essayitem from "@/components/essayItem/index.vue"
+import Essayitem from "@/components/essayItem/index.vue";
+import { debounce } from "lodash"; //导入loadsh插件
 export default {
   components: {
     Essayitem,
@@ -36,6 +41,7 @@ export default {
       finished: false,
       isLoading: false,
       timestamp: Date.now(), //时间戳
+      scrollTop: 0, //滚动位置
     };
   },
   methods: {
@@ -65,7 +71,18 @@ export default {
   computed: {},
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    let dom = this.$refs["EssayList-container"];
+    // 监听滚动 距离;
+    dom.onscroll = debounce(() => {
+      this.scrollTop = dom.scrollTop;
+    }, 50);
+  },
+  activated() {
+    // 设置滚动 距离
+    let dom = this.$refs["EssayList-container"];
+    dom.scrollTop = this.scrollTop;
+  },
 };
 </script>
 

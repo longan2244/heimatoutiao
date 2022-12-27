@@ -94,6 +94,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["REMOVEVUEPAGE"]),
     //验证码发送
     async onsendSms() {
       this.IssendSmsshow = true; //一进来禁用验证码按钮
@@ -141,12 +142,14 @@ export default {
         let { data: res } = await loginapi(this.userinfo);
         this.SETUSERTOKENINFOIO(res.data);
         Toast.success("成功登陆");
+        // 清除缓冲
+        this.REMOVEVUEPAGE("Layout")
         this.$router.push("/my")
       } catch (error) {
         return Toast.fail(error);
       }
     },
-    ...mapMutations(["SETUSERTOKENINFOIO"]),//存放token相关方法
+    ...mapMutations(["SETUSERTOKENINFOIO"]), //存放token相关方法
     //获取验证码
   },
   computed: {},

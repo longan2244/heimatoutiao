@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- 路由出口 -->
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <van-tabbar v-model="active" route>
       <van-tabbar-item to="/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/qa" icon="chat-o">问答</van-tabbar-item>
@@ -12,6 +14,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   components: {},
   name: "Layout",
@@ -21,11 +24,15 @@ export default {
       active: 0,
     };
   },
-  methods: {},
+  methods: {
+    ...mapMutations(["ADDVUEPAGE"]),
+  },
   computed: {},
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.ADDVUEPAGE("Layout");
+  },
 };
 </script>
 

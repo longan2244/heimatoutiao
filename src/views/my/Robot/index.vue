@@ -6,7 +6,7 @@
         left-text="返回"
         left-arrow
         @click-left="$router.go(-1)"
-      /> 
+      />
     </div>
     <div class="robotlist" ref="robotlist">
       <van-cell-group>
@@ -36,18 +36,13 @@
 <script>
 import { getItem, setItem } from "@/utils/index.js";
 import io from "socket.io-client";
-let socket = io("http://toutiao.itheima.net", {
-  query: {
-    token: getItem("usertokeninfo").token,
-  },
-  transports: ["websocket"],
-});
 export default {
   components: {},
   name: "robot",
   props: [],
   data() {
     return {
+      socket: null,
       msg: "",
       robot_and_user_msg: getItem("robot_and_user_msg") || [], //用户数据 和 机器人数据
     };
@@ -64,10 +59,10 @@ export default {
     // 初始化socket
     initsocket() {
       // client-side
-      socket.on("connect", () => {
+      this.socket.on("connect", () => {
         console.log("连接成功"); // x8WIv7-mJelg7on_ALbx
       });
-      socket.on("disconnect", () => {
+       this.socket.on("disconnect", () => {
         console.log("断开连接"); // undefined
       });
     },
@@ -78,7 +73,7 @@ export default {
         timestamp: Date.now(),
       };
       this.robot_and_user_msg.push(usermsg);
-      socket.emit("message", usermsg);
+       this.socket.emit("message", usermsg);
     },
   },
   computed: {},
@@ -91,11 +86,17 @@ export default {
     },
   },
   created() {
+    this.socket = io("http://toutiao.itheima.net", {
+      query: {
+        token: getItem("usertokeninfo").token,
+      },
+      transports: ["websocket"],
+    });
     this.initsocket();
   },
   mounted() {
     //接受到了消息
-    socket.on("message", (data) => {
+     this.socket.on("message", (data) => {
       this.robot_and_user_msg.push({
         ISrobot: true,
         ...data,
